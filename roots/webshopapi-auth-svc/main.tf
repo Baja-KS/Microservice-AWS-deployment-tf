@@ -1,5 +1,5 @@
 module "auth-svc-pipeline" {
-  source                 = "./modules/codepipeline"
+  source                 = "../../modules/codepipeline"
   ecr_repo               = var.ecr_repo
   bucket_name            = var.bucket_name
   codebuild_project_name = var.codebuild_project_name
