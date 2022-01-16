@@ -1,3 +1,11 @@
+terraform {
+  backend "s3" {
+    bucket = "tf-states-bajaks"
+    key    = "WebshopAPI-AuthMS/terraform.tfstate"
+    region = "eu-west-2"
+  }
+}
+
 module "auth-svc-pipeline" {
   source                 = "../../modules/codepipeline"
   ecr_repo               = var.ecr_repo
