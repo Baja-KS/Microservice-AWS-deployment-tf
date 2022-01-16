@@ -1,0 +1,7 @@
+ecr_repo               = "webshop-api-auth-ms"
+bucket_name            = "bajaks-practice-bucket"
+codebuild_project_name = "WebshopAPI-AuthMS"
+repo_owner             = "Baja-KS"
+repo                   = "WebshopAPI-AuthenticationService"
+branch                 = "main"
+pipeline_name          = "ci-cd-pipeline"

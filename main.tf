@@ -153,8 +153,8 @@ EOF
 
 
 resource "aws_codebuild_project" "project" {
-  name          = "WebshopAPI-AuthMS"
-  description   = "test_codebuild_project"
+  name          = var.codebuild_project_name
+  description   = var.codebuild_project_desc
   build_timeout = "5"
   service_role  = aws_iam_role.pipeline_role.arn
 
@@ -189,7 +189,7 @@ resource "aws_codebuild_project" "project" {
 
   source {
     type            = "GITHUB"
-    location        = "https://github.com/Baja-KS/WebshopAPI-AuthenticationService.git"
+    location        = "https://github.com/${var.repo_owner}/${var.repo}.git"
     git_clone_depth = 1
 
     git_submodules_config {
@@ -197,12 +197,12 @@ resource "aws_codebuild_project" "project" {
     }
   }
 
-  source_version = "main"
+  source_version = var.branch
 
 }
 
 resource "aws_codepipeline" "codepipeline" {
-  name     = "pipeline"
+  name     = var.pipeline_name
   role_arn = aws_iam_role.pipeline_role.arn
 
   artifact_store {
@@ -222,9 +222,9 @@ resource "aws_codepipeline" "codepipeline" {
       output_artifacts = ["source_output"]
 
       configuration = {
-        Owner      = "Baja-KS"
-        Repo       = "WebshopAPI-AuthenticationService"
-        Branch     = "main"
+        Owner      = var.repo_owner
+        Repo       = var.repo
+        Branch     = var.branch
         OAuthToken = var.github_token
       }
     }
