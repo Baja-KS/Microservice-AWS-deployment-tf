@@ -19,5 +19,7 @@ module "auth-svc-pipeline" {
   aws_region             = var.aws_region
   github_token           = var.github_token
   env                    = var.env
+  aws_access_key_id      = var.aws_access_key_id
+  aws_secret_access_key  = var.aws_secret_access_key
 }
 
